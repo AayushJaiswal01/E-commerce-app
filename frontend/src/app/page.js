@@ -23,7 +23,9 @@ const Page = () => {
   const fetchProducts = async () => {
     setLoading(true); // Set loading to true
     try {
-      const response = await axios.get("http://localhost:3000/products");
+      const response = await axios.get(
+        "https://e-commerce-app-g2yu.onrender.com/products"
+      );
       setProducts(response.data);
     } catch (error) {
       console.error("Error fetching products:", error);
@@ -74,7 +76,7 @@ const Page = () => {
       const uploadedImageUrl = await uploadImage(imageFile); // You can also do this after your form data
 
       const response = await axios.post(
-        "http://localhost:3000/products",
+        "https://e-commerce-app-g2yu.onrender.com/products",
         formData,
         {
           headers: {
@@ -123,7 +125,7 @@ const Page = () => {
 
     try {
       await axios.put(
-        `http://localhost:3000/products/${editingProductId}`,
+        `https://e-commerce-app-g2yu.onrender.com/${editingProductId}`,
         formData,
         {
           headers: {
@@ -157,11 +159,14 @@ const Page = () => {
     const token = localStorage.getItem("token");
 
     try {
-      await axios.delete(`http://localhost:3000/products/${productId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `https://e-commerce-app-g2yu.onrender.com/products/${productId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product.id !== productId)
       );

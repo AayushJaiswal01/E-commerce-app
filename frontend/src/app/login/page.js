@@ -17,10 +17,13 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       // Make the API call for login using username
-      const response = await axios.post("http://localhost:3000/login", {
-        username, // Use username for login
-        password,
-      });
+      const response = await axios.post(
+        "https://e-commerce-app-g2yu.onrender.com/login",
+        {
+          username, // Use username for login
+          password,
+        }
+      );
       // Redirect on successful login
       const { accessToken } = response.data; // Adjust based on your API response structure
       console.log(accessToken);
@@ -42,7 +45,7 @@ const LoginPage = () => {
     }
 
     try {
-      await axios.post("http://localhost:3000/signup", {
+      await axios.post("https://e-commerce-app-g2yu.onrender.com/signup", {
         username, // Use username for sign up
         password,
       });

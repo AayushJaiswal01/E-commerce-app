@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
           </main>
 
           <footer className="bg-gray-900 text-center py-4 text-gray-400 dark:bg-gray-800 dark:text-gray-500">
-            © 2024 Product Management System
+            © GIVA SHOPPING STORE
           </footer>
         </body>
       </AuthProvider>
