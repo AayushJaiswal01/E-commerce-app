@@ -111,10 +111,10 @@ const Page = () => {
   const handleUpdateProduct = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    if (imageFile) {
-      const uploadedImageUrl = await uploadImage(imageFile);
-      formData.append("image", imageFile);
-    }
+
+    const uploadedImageUrl = await uploadImage(imageFile);
+    formData.append("image", imageFile);
+
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
@@ -124,7 +124,7 @@ const Page = () => {
 
     try {
       await axios.put(
-        `https://e-commerce-app-g2yu.onrender.com/${editingProductId}`,
+        `https://e-commerce-app-g2yu.onrender.com/:${editingProductId}`,
         formData,
         {
           headers: {

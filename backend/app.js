@@ -185,6 +185,8 @@ app.put(
 
     try {
       if (req.file) {
+        console.log("File received:", req.file);
+
         const bufferStream = new stream.PassThrough();
         bufferStream.end(req.file.buffer);
 
