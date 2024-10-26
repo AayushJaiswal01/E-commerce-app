@@ -124,7 +124,7 @@ const Page = () => {
 
     try {
       await axios.put(
-        `https://e-commerce-app-g2yu.onrender.com/:${editingProductId}`,
+        `https://e-commerce-app-g2yu.onrender.com/${editingProductId}`,
         formData,
         {
           headers: {
