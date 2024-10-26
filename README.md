@@ -108,6 +108,7 @@ CLOUDINARY_API_SECRET="wzUjki8FzzY58g0_ZdvJCkVXAt0"
 ### Hosting
 
 Frontend - Hosted on vercel --link(https://e-commerce-app-frontend-ten.vercel.app)
+
 Backend -Hosted on render --link(https://e-commerce-app-g2yu.onrender.com/)
 
 <img width="1440" alt="Screenshot 2024-10-26 at 6 51 03 PM" src="https://github.com/user-attachments/assets/548e2340-6a6c-4341-8b9c-5c0e30c245ea">
