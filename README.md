@@ -78,7 +78,13 @@ Make sure you have the following installed:
    cd ../backend
    ```
 
-2. Start the server:
+2.⁠ ⁠Generate Prisma Client
+
+```bash
+npx prisma generate dev
+```
+
+3. Start the server:
    ```bash
    node server.js
    ```
