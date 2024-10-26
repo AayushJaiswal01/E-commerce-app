@@ -8,8 +8,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="dark">
       <AuthProvider>
-        <body className="dark:bg-gray-800 dark:text-white">
-          <header className="bg-dark_color p-6 shadow-lg dark:bg-gray-800 dark:border-b dark:border-gray-700">
+        <body>
+          <header className="bg-dark_color p-6 shadow-lg  ">
             <div className="container mx-auto flex justify-between items-center">
               <h1 className="text-color4 text-3xl font-bold tracking-wide">
                 GIVA SHOPPING STORE
@@ -18,11 +18,9 @@ export default function RootLayout({ children }) {
             </div>
           </header>
 
-          <main className="min-h-screen p-6 dark:bg-gray-800 dark:text-white">
-            {children}
-          </main>
+          <main className="min-h-screen p-6 ">{children}</main>
 
-          <footer className="bg-gray-900 text-center py-4 text-gray-400 dark:bg-gray-800 dark:text-gray-500">
+          <footer className="bg-gray-900 text-center py-4 text-gray-400 ">
             © GIVA SHOPPING STORE
           </footer>
         </body>
@@ -45,21 +43,21 @@ const AuthButton = () => {
     <nav className="space-x-6 text-lg">
       <a
         href="/"
-        className="text-white hover:text-gray-300 transition-colors font-semibold px-3 py-2 rounded-md dark:text-gray-200 dark:hover:text-gray-400"
+        className="text-white hover:text-gray-300 transition-colors font-semibold px-3 py-2 rounded-md "
       >
         Home
       </a>
       {isAuthenticated ? (
         <button
           onClick={handleLogout}
-          className="text-white hover:text-gray-300 transition-colors font-semibold px-3 py-2 rounded-md dark:text-gray-200 dark:hover:text-gray-400"
+          className="text-white hover:text-gray-300 transition-colors font-semibold px-3 py-2 rounded-md "
         >
           Logout
         </button>
       ) : (
         <a
           href="/login"
-          className="text-white hover:text-gray-300 transition-colors font-semibold px-3 py-2 rounded-md dark:text-gray-200 dark:hover:text-gray-400"
+          className="text-white hover:text-gray-300 transition-colors font-semibold px-3 py-2 rounded-md "
         >
           Login
         </a>

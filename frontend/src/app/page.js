@@ -194,7 +194,7 @@ const Page = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+            className="max-w-sm bg-white border border-gray-200 rounded-lg shadow  "
           >
             <img
               className="rounded-t-lg object-cover h-60 w-full" // Set fixed height and width for images
@@ -202,10 +202,10 @@ const Page = () => {
               alt={product.name}
             />
             <div className="p-5">
-              <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+              <h5 className="text-xl font-bold tracking-tight text-gray-900 ">
                 {product.name}
               </h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              <p className="mb-3 font-normal text-gray-700 ">
                 {product.description}
               </p>
               <div className="flex justify-between">

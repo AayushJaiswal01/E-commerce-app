@@ -28,7 +28,7 @@ const LoginPage = () => {
       const { accessToken } = response.data; // Adjust based on your API response structure
       console.log(accessToken);
       localStorage.setItem("token", accessToken); // Save token in local storage
-      router.push("/");
+      router.replace("/");
       setTimeout(() => {
         window.location.reload();
       }, 100); // Adjust the delay (in milliseconds) as needed

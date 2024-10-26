@@ -21,7 +21,7 @@ const SignUpPage = () => {
 
     try {
       // Ensure you're sending the correct payload
-      await axios.post("http://localhost:3000/signup", {
+      await axios.post("https://e-commerce-app-g2yu.onrender.com/signup", {
         username, // Correctly sending username
         password,
       });
