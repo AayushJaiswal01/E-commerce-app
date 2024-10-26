@@ -38,7 +38,7 @@ Make sure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/AayushJaiswal01/E-commerce-app/tree/main
+   git clone https://github.com/AayushJaiswal01/E-commerce-app.git
    cd your-repository
    ```
 
@@ -85,3 +85,12 @@ Make sure you have the following installed:
 
 The frontend will run on `http://localhost:3000`, and the backend will run on `http://localhost:5000`.
 Backend program is deployed on render, and the frontend is deployed on vercel
+
+### Hosting
+
+Frontend - Hosted on vercel
+Backend -Hosted on render --link(https://e-commerce-app-g2yu.onrender.com/)
+
+<img width="1440" alt="Screenshot 2024-10-26 at 6 51 03 PM" src="https://github.com/user-attachments/assets/548e2340-6a6c-4341-8b9c-5c0e30c245ea">
+<img width="1440" alt="Screenshot 2024-10-26 at 6 51 11 PM" src="https://github.com/user-attachments/assets/329ef653-2025-4679-85a0-d19d9c96b9ed">
+![Uploading Screenshot 2024-10-26 at 6.51.13 PM.png…]()

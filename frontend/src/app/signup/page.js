@@ -5,7 +5,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const SignUpPage = () => {
-  const [username, setUsername] = useState(""); // State for username
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -20,14 +20,13 @@ const SignUpPage = () => {
     }
 
     try {
-      // Ensure you're sending the correct payload
       await axios.post("https://e-commerce-app-g2yu.onrender.com/signup", {
-        username, // Correctly sending username
+        username,
         password,
       });
       setSuccessMessage("Account created successfully! Please log in.");
       setTimeout(() => {
-        router.push("/login"); // Redirect after successful signup
+        router.push("/login");
       }, 2000);
     } catch (error) {
       setErrorMessage("Error creating account. Please try again.");
@@ -43,10 +42,10 @@ const SignUpPage = () => {
           <p className="text-green-500 mb-4">{successMessage}</p>
         )}
         <input
-          type="text" // Ensure input type is text for username
-          placeholder="Username" // Placeholder should be for Username
-          value={username} // Use username state
-          onChange={(e) => setUsername(e.target.value)} // Update username state
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           className="border border-gray-300 rounded-lg w-full p-2 mb-4"
           required
         />

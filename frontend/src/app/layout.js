@@ -1,7 +1,7 @@
 "use client";
-import "./globals.css"; // Your global styles
-import { AuthProvider } from "@/context/AuthProvider"; // Adjust the path as necessary
-import useAuth from "@/context/useAuth"; // Import the useAuth hook
+import "./globals.css";
+import { AuthProvider } from "@/context/AuthProvider";
+import useAuth from "@/context/useAuth";
 import { useRouter } from "next/navigation";
 
 export default function RootLayout({ children }) {
@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
               <h1 className="text-color4 text-3xl font-bold tracking-wide">
                 GIVA SHOPPING STORE
               </h1>
-              <AuthButton /> {/* Move AuthButton here */}
+              <AuthButton />
             </div>
           </header>
 
@@ -29,14 +29,13 @@ export default function RootLayout({ children }) {
   );
 }
 
-// Separate AuthButton component
 const AuthButton = () => {
-  const { isAuthenticated, logout } = useAuth(); // Use the hook here
+  const { isAuthenticated, logout } = useAuth();
   const router = useRouter();
 
   const handleLogout = () => {
     logout();
-    router.push("/login"); // Redirect to login after logout
+    router.push("/login");
   };
 
   return (

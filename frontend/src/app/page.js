@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "@/context/AuthProvider"; // Adjust this import as per your directory structure
+import { AuthContext } from "@/context/AuthProvider";
 
 const Page = () => {
   const [products, setProducts] = useState([]);
@@ -15,8 +15,8 @@ const Page = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editingProductId, setEditingProductId] = useState(null);
-  const [loading, setLoading] = useState(false); // Loading state
-  const { isAuthenticated } = useContext(AuthContext); // Use AuthContext
+  const [loading, setLoading] = useState(false);
+  const { isAuthenticated } = useContext(AuthContext);
   const router = useRouter();
 
   // Fetch products from the server
@@ -41,10 +41,10 @@ const Page = () => {
   // Upload image to Cloudinary
   const uploadImage = async (file) => {
     const CLOUDINARY_URL =
-      "https://api.cloudinary.com/v1_1/djh4kobdl/image/upload"; // Your Cloudinary URL
+      "https://api.cloudinary.com/v1_1/djh4kobdl/image/upload";
     const FORM_DATA = new FormData();
     FORM_DATA.append("file", file);
-    FORM_DATA.append("upload_preset", "idyyu9fq"); // Your upload preset
+    FORM_DATA.append("upload_preset", "idyyu9fq");
 
     try {
       const response = await axios.post(CLOUDINARY_URL, FORM_DATA);
@@ -64,16 +64,16 @@ const Page = () => {
       return;
     }
     setLoading(true);
-    // Prepare the form data
+
     const formData = new FormData();
-    formData.append("image", imageFile); // Append the image file
+    formData.append("image", imageFile);
     formData.append("name", name);
     formData.append("description", description);
     formData.append("price", price);
     formData.append("quantity", quantity);
 
     try {
-      const uploadedImageUrl = await uploadImage(imageFile); // You can also do this after your form data
+      const uploadedImageUrl = await uploadImage(imageFile);
 
       const response = await axios.post(
         "https://e-commerce-app-g2yu.onrender.com/products",
@@ -81,15 +81,14 @@ const Page = () => {
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
-            "Content-Type": "multipart/form-data", // Ensure the content type is set correctly
+            "Content-Type": "multipart/form-data",
           },
         }
       );
 
-      // Handle successful response...
-      setIsModalOpen(false); // Close the modal
-      resetForm(); // Reset form fields
-      router.push("/"); // Refresh the page
+      setIsModalOpen(false);
+      resetForm();
+      router.push("/");
       location.reload();
     } catch (error) {
       console.error("Error adding product:", error);
@@ -121,7 +120,7 @@ const Page = () => {
     formData.append("price", price);
     formData.append("quantity", quantity);
 
-    setLoading(true); // Set loading to true
+    setLoading(true);
 
     try {
       await axios.put(
@@ -140,11 +139,10 @@ const Page = () => {
     } catch (error) {
       console.error("Error updating product:", error);
     } finally {
-      setLoading(false); // Set loading to false
+      setLoading(false);
     }
   };
 
-  // Reset the form fields
   const resetForm = () => {
     setName("");
     setDescription("");
@@ -182,14 +180,12 @@ const Page = () => {
     <div className="p-4 relative">
       <h1 className="text-2xl font-bold mb-4">Product Management</h1>
 
-      {/* Loader */}
       {loading && (
         <div className="flex items-center justify-center my-4">
           <div className="loader" /> {/* Circular loader */}
         </div>
       )}
 
-      {/* Display Products in Card Form */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
           <div
@@ -234,7 +230,6 @@ const Page = () => {
         ))}
       </div>
 
-      {/* Add Product Button */}
       {isAuthenticated && (
         <button
           onClick={() => setIsModalOpen(true)}
@@ -243,7 +238,7 @@ const Page = () => {
           Add Product
         </button>
       )}
-      {/* Add Product Modal */}
+
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center ">
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
@@ -314,7 +309,6 @@ const Page = () => {
         </div>
       )}
 
-      {/* Edit Product Modal */}
       {isEditModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">

@@ -6,18 +6,18 @@ const stream = require("stream");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { PrismaClient } = require("@prisma/client");
-const cloudinary = require("cloudinary").v2; // Import Cloudinary
+const cloudinary = require("cloudinary").v2;
 
 const app = express();
 const prisma = new PrismaClient();
 const PORT = process.env.PORT || 3000;
-const JWT_SECRET = process.env.JWT_SECRET; // Replace with your secret key
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Configure Cloudinary
 cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, // Set your Cloudinary cloud name
-  api_key: process.env.CLOUDINARY_API_KEY, // Set your Cloudinary API key
-  api_secret: process.env.CLOUDINARY_API_SECRET, // Set your Cloudinary API secret
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 // Middleware
@@ -36,15 +36,11 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-// Set up multer for image storage in memory
-const storage = multer.memoryStorage(); // Store images in memory
-const upload = multer({ storage }); // Use memory storage for buffer handling
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
-// API Endpoints
-
-// User signup endpoint
 app.post("/signup", async (req, res) => {
-  console.log("Request body:", req.body); // Log the request body
+  console.log("Request body:", req.body);
   const { username, password } = req.body;
 
   // Validate input
@@ -70,14 +66,14 @@ app.post("/signup", async (req, res) => {
     // Create new user
     const user = await prisma.user.create({
       data: {
-        username: username, // Correctly assign the username here
-        password: hashedPassword, // Make sure hashedPassword is assigned here
+        username: username,
+        password: hashedPassword,
       },
     });
 
-    res.status(201).json({ message: "User created successfully", user }); // You might want to return user info too
+    res.status(201).json({ message: "User created successfully", user });
   } catch (error) {
-    console.error("Error signing up:", error); // Log the error for debugging
+    console.error("Error signing up:", error);
     res.status(500).json({ message: "Error signing up", error: error.message });
   }
 });
@@ -101,9 +97,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Logout endpoint (client-side handles token removal)
 app.post("/logout", (req, res) => {
-  // Send success response. The client should handle token removal.
   res.json({ message: "Logged out successfully" });
 });
 
@@ -122,7 +116,6 @@ app.get("/api", (req, res) => {
   res.send("API is working");
 });
 
-// Add a new product (with image upload to Cloudinary)
 app.post(
   "/products",
   authenticateToken,
@@ -133,15 +126,12 @@ app.post(
     try {
       let imageUrl = null;
 
-      // Check if the file is uploaded correctly
       if (req.file) {
         console.log("File received:", req.file);
 
-        // Create a readable stream from the file buffer
         const bufferStream = new stream.PassThrough();
         bufferStream.end(req.file.buffer);
 
-        // Promise-based upload to Cloudinary
         imageUrl = await new Promise((resolve, reject) => {
           bufferStream.pipe(
             cloudinary.uploader.upload_stream(
@@ -169,13 +159,13 @@ app.post(
           description,
           price: parseFloat(price),
           quantity: parseInt(quantity, 10),
-          imageUrl, // This should now have the URL if upload was successful
+          imageUrl,
         },
       });
 
       res.status(201).json(product);
     } catch (err) {
-      console.error("Error adding product:", err); // Log the error for debugging
+      console.error("Error adding product:", err);
       res
         .status(400)
         .json({ message: "Error adding product", error: err.message });
@@ -194,7 +184,6 @@ app.put(
     let imageUrl = null;
 
     try {
-      // Upload new image to Cloudinary if it exists
       if (req.file) {
         const bufferStream = new stream.PassThrough();
         bufferStream.end(req.file.buffer);
@@ -216,7 +205,6 @@ app.put(
         });
       }
 
-      // Update the product
       const product = await prisma.product.update({
         where: { id: parseInt(id) },
         data: {
@@ -224,7 +212,7 @@ app.put(
           description,
           price: parseFloat(price),
           quantity: parseInt(quantity, 10),
-          imageUrl: imageUrl || undefined, // Update imageUrl only if it's provided
+          imageUrl: imageUrl || undefined,
         },
       });
 
@@ -255,7 +243,4 @@ app.delete("/products/:id", authenticateToken, async (req, res) => {
   }
 });
 
-// Start the server
-
-// Export the app for testing
 module.exports = app;
