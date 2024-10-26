@@ -39,7 +39,7 @@ Make sure you have the following installed:
 
    ```bash
    git clone https://github.com/AayushJaiswal01/E-commerce-app.git
-   cd your-repository
+   cd E-commerce-app
    ```
 
 2. **Install dependencies for the frontend:**
@@ -62,12 +62,12 @@ Make sure you have the following installed:
 1. Navigate to the `frontend` directory:
 
    ```bash
-   cd frontend
+   cd ../frontend
    ```
 
 2. Start the development server:
    ```bash
-   npm start
+   npm run dev
    ```
 
 ### Running the Backend
@@ -75,7 +75,7 @@ Make sure you have the following installed:
 1. Navigate to the `backend` directory:
 
    ```bash
-   cd backend
+   cd ../backend
    ```
 
 2. Start the server:
@@ -83,12 +83,22 @@ Make sure you have the following installed:
    node server.js
    ```
 
-The frontend will run on `http://localhost:3000`, and the backend will run on `http://localhost:5000`.
 Backend program is deployed on render, and the frontend is deployed on vercel
+
+## Environment Variables
+
+These environment variables are used in backend
+
+DATABASE_URL="postgresql://neondb_owner:Jg5TcpkIKb9R@ep-polished-sun-a8rl04o4.eastus2.azure.neon.tech/neondb?sslmode=require"
+
+JWT_SECRET="12345678"
+CLOUDINARY_CLOUD_NAME="djh4kobdl"
+CLOUDINARY_API_KEY="841658719764277"
+CLOUDINARY_API_SECRET="wzUjki8FzzY58g0_ZdvJCkVXAt0"
 
 ### Hosting
 
-Frontend - Hosted on vercel
+Frontend - Hosted on vercel --link(https://e-commerce-app-frontend-ten.vercel.app)
 Backend -Hosted on render --link(https://e-commerce-app-g2yu.onrender.com/)
 
 <img width="1440" alt="Screenshot 2024-10-26 at 6 51 03 PM" src="https://github.com/user-attachments/assets/548e2340-6a6c-4341-8b9c-5c0e30c245ea">
