@@ -80,9 +80,9 @@ Make sure you have the following installed:
 
 2.⁠ ⁠Generate Prisma Client
 
-```bash
-npx prisma generate dev
-```
+    ```bash
+    npx prisma generate dev
+    ```
 
 3. Start the server:
    ```bash
@@ -98,8 +98,11 @@ These environment variables are used in backend
 DATABASE_URL="postgresql://neondb_owner:Jg5TcpkIKb9R@ep-polished-sun-a8rl04o4.eastus2.azure.neon.tech/neondb?sslmode=require"
 
 JWT_SECRET="12345678"
+
 CLOUDINARY_CLOUD_NAME="djh4kobdl"
+
 CLOUDINARY_API_KEY="841658719764277"
+
 CLOUDINARY_API_SECRET="wzUjki8FzzY58g0_ZdvJCkVXAt0"
 
 ### Hosting
