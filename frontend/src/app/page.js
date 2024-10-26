@@ -309,72 +309,81 @@ const Page = () => {
         </div>
       )}
 
+      {/* Edit Product Form Modal */}
       {isEditModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4">Edit Product</h2>
-            <form onSubmit={handleUpdateProduct}>
-              <div className="relative z-0 w-full mb-5">
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Product Name"
-                  required
-                  className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                />
-              </div>
-              <div className="relative z-0 w-full mb-5">
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  placeholder="Description"
-                  required
-                  className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                />
-              </div>
-              <div className="relative z-0 w-full mb-5">
-                <input
-                  type="number"
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  placeholder="Price"
-                  required
-                  className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                />
-              </div>
-              <div className="relative z-0 w-full mb-5">
-                <input
-                  type="number"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  placeholder="Quantity"
-                  required
-                  className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                />
-              </div>
-              <div className="relative z-0 w-full mb-5">
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setImageFile(e.target.files[0])}
-                  className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-l-lg file:border-0 file:text-sm file:font-semibold file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
-              >
-                Update Product
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsEditModalOpen(false)}
-                className="mt-2 w-full text-red-600 hover:text-red-900"
-              >
-                Cancel
-              </button>
-            </form>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+            <h2 className="text-lg font-bold mb-4">Edit Product</h2>
+            {/* Find the current product being edited */}
+            {products.map((product) => {
+              if (product.id === editingProductId) {
+                return (
+                  <form onSubmit={handleUpdateProduct} key={product.id}>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Product Name"
+                      required
+                      className="w-full p-2 mb-2 border rounded"
+                    />
+                    <textarea
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                      placeholder="Product Description"
+                      required
+                      className="w-full p-2 mb-2 border rounded"
+                    />
+                    <input
+                      type="number"
+                      value={price}
+                      onChange={(e) => setPrice(e.target.value)}
+                      placeholder="Price"
+                      required
+                      className="w-full p-2 mb-2 border rounded"
+                    />
+                    <input
+                      type="number"
+                      value={quantity}
+                      onChange={(e) => setQuantity(e.target.value)}
+                      placeholder="Quantity"
+                      required
+                      className="w-full p-2 mb-2 border rounded"
+                    />
+
+                    {/* Display existing image */}
+                    {product.imageUrl && (
+                      <img
+                        src={product.imageUrl}
+                        alt="Current"
+                        className="mb-2 rounded"
+                      />
+                    )}
+
+                    {/* Option to upload a new image */}
+                    <input
+                      type="file"
+                      onChange={(e) => setImageFile(e.target.files[0])}
+                      className="w-full p-2 mb-2"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full bg-blue-500 text-white p-2 rounded"
+                    >
+                      Update Product
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setIsEditModalOpen(false)}
+                      className="mt-2 w-full bg-red-500 text-white p-2 rounded"
+                    >
+                      Cancel
+                    </button>
+                  </form>
+                );
+              }
+              return null; // Return null for other products
+            })}
           </div>
         </div>
       )}
