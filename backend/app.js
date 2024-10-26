@@ -118,6 +118,9 @@ app.get("/products", async (req, res) => {
       .json({ message: "Error fetching products", error: err.message });
   }
 });
+app.get("/api", (req, res) => {
+  res.send("API is working");
+});
 
 // Add a new product (with image upload to Cloudinary)
 app.post(
