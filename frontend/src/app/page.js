@@ -114,7 +114,7 @@ const Page = () => {
     const formData = new FormData();
     if (imageFile) {
       const uploadedImageUrl = await uploadImage(imageFile);
-      formData.append("imageUrl", uploadedImageUrl);
+      formData.append("image", imageFile);
     }
     formData.append("name", name);
     formData.append("description", description);
